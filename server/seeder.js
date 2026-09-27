@@ -1,5 +1,12 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const dns = require('dns');
+
+try {
+  dns.setServers(['8.8.8.8', '8.8.4.4']);
+} catch (e) {
+  // Ignore DNS set error
+}
 const Product = require('./models/Product');
 const User = require('./models/User');
 const Review = require('./models/Review');
