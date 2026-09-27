@@ -16,7 +16,9 @@ const connectDB = async () => {
   }
 
   try {
-    const conn = await mongoose.connect(process.env.MONGO_URI);
+    const rawUri = process.env.MONGO_URI || '';
+    const mongoUri = rawUri.trim().replace(/^['"]|['"]$/g, '');
+    const conn = await mongoose.connect(mongoUri);
     console.log(`✅ MongoDB Connected: ${conn.connection.host}`);
   } catch (err) {
     console.error(`❌ MongoDB Connection Error: ${err.message}`);
