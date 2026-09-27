@@ -44,14 +44,33 @@ app.use((req, res, next) => {
 });
 
 app.get('/', (req, res) => res.send('API Running'));
+app.get('/api', (req, res) => res.send('API Running'));
 
-// Define Routes
-app.use('/api/users', require('./routes/users'));
-app.use('/api/products', require('./routes/products'));
-app.use('/api/cart', require('./routes/cart'));
-app.use('/api/orders', require('./routes/orders'));
-app.use('/api/reviews', require('./routes/reviews'));
-app.use('/api/admin', require('./routes/admin'));
+// Define Routes (Supporting both /api/path and /path)
+const usersRoute = require('./routes/users');
+const productsRoute = require('./routes/products');
+const cartRoute = require('./routes/cart');
+const ordersRoute = require('./routes/orders');
+const reviewsRoute = require('./routes/reviews');
+const adminRoute = require('./routes/admin');
+
+app.use('/api/users', usersRoute);
+app.use('/users', usersRoute);
+
+app.use('/api/products', productsRoute);
+app.use('/products', productsRoute);
+
+app.use('/api/cart', cartRoute);
+app.use('/cart', cartRoute);
+
+app.use('/api/orders', ordersRoute);
+app.use('/orders', ordersRoute);
+
+app.use('/api/reviews', reviewsRoute);
+app.use('/reviews', reviewsRoute);
+
+app.use('/api/admin', adminRoute);
+app.use('/admin', adminRoute);
 
 const PORT = process.env.PORT || 5000;
 
