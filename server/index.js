@@ -43,15 +43,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// URL normalize middleware for Vercel Serverless Function rewrites
-app.use((req, res, next) => {
-  if (req.url.startsWith('/api/index.js')) {
-    req.url = req.url.replace('/api/index.js', '');
-    if (!req.url || req.url === '') req.url = '/';
-  }
-  next();
-});
-
 app.get('/', (req, res) => res.send('API Running'));
 app.get('/api', (req, res) => res.send('API Running'));
 
