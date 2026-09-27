@@ -28,7 +28,7 @@ const UsersPage = () => {
                 credentials: 'include',
             });
             const data = await response.json();
-            setUsers(data);
+            setUsers(Array.isArray(data) ? data : []);
             setLoading(false);
         } catch (error) {
             console.error('Error fetching users:', error);

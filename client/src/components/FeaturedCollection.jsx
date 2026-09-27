@@ -10,7 +10,8 @@ const FeaturedCollection = () => {
         const fetchProducts = async () => {
             try {
                 const response = await axios.get('/api/products?featured=true');
-                setProducts(response.data.slice(0, 3)); // Show 3 featured products
+                const data = Array.isArray(response.data) ? response.data : [];
+                setProducts(data.slice(0, 3)); // Show 3 featured products
             } catch (error) {
                 console.error('Error fetching products:', error);
             }

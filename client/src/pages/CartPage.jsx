@@ -17,7 +17,7 @@ const CartPage = () => {
       const response = await axios.get('/api/cart', {
         withCredentials: true,
       });
-      setCartItems(response.data);
+      setCartItems(Array.isArray(response.data) ? response.data : []);
     } catch (error) {
       console.error('Error fetching cart:', error);
       // Mock data for now

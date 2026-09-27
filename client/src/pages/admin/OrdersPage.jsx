@@ -25,7 +25,7 @@ const OrdersPage = () => {
                 credentials: 'include',
             });
             const data = await response.json();
-            setOrders(data);
+            setOrders(Array.isArray(data) ? data : []);
             setLoading(false);
         } catch (error) {
             console.error('Error fetching orders:', error);

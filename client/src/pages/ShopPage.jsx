@@ -31,7 +31,7 @@ const ShopPage = () => {
       if (filters.sort) params.append('sort', filters.sort);
 
       const response = await axios.get(`/api/products?${params.toString()}`);
-      setProducts(response.data);
+      setProducts(Array.isArray(response.data) ? response.data : []);
     } catch (error) {
       console.error('Error fetching products:', error);
     } finally {

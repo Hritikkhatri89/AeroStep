@@ -10,7 +10,8 @@ const NewArrivals = () => {
         const fetchProducts = async () => {
             try {
                 const response = await axios.get('/api/products?tags=New%20Arrival');
-                setProducts(response.data.slice(0, 4));
+                const data = Array.isArray(response.data) ? response.data : [];
+                setProducts(data.slice(0, 4));
             } catch (error) {
                 console.error('Error fetching products:', error);
             }
